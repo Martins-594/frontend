@@ -134,7 +134,7 @@ export function Portfolio({ onWithdraw, onDeposit }: PortfolioProps) {
       {/* Portfolio risk indicator from bond ratings mix */}
       <Card style={{ padding: 22, marginBottom: 28 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
-          <StatBlock label="Portfolio risk" value={risk.level[0].toUpperCase() + risk.level.slice(1)} size="md" />
+          <StatBlock label="Portfolio risk score" value={`${risk.score}/100`} size="md" />
           <p
             style={{
               fontFamily: 'var--font-body',
@@ -144,7 +144,7 @@ export function Portfolio({ onWithdraw, onDeposit }: PortfolioProps) {
               margin: 0,
             }}
           >
-            Score: {risk.score}/100 based on bond ratings mix.
+            Level: {risk.level[0].toUpperCase() + risk.level.slice(1)} based on bond ratings mix.
           </p>
         </div>
       </Card>
