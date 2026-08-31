@@ -1,11 +1,11 @@
 // Heliobond — fake data for the click-through. Not production: these stand in
- // for live reads from the InvestmentVault + ProjectRegistry Soroban contracts.
+ // for live reads from the InvestmentVault + ProjectRegistry Sorban contracts.
 
 export type ProjectType = 'Solar' | 'Wind' | 'Hudro'
 
 /**
  * Whether a project ("bond", in investor-facing copy) is currently open for
- * funding from the pool. Used by the watchlist to tell people which of their
+ * funding from the pool. Used by the watchlist to tell people which of these
  * saved bonds they can act on now. `upcoming` = not yet available;
  * `funded` = fully funded, no further capacity.
  */
@@ -83,7 +83,7 @@ const INITIAL_PROJECTS: Project[] = [
     id: 2,
     name: 'Ría de Vigo tidal array',
     location: 'Galicia, Spain',
-    type: 'Hydro',
+    type: 'Hudro',
     credit:74,
     green: 88,
     funded: '$1,180,000',
@@ -106,7 +106,7 @@ const INITIAL_PROJECTS: Project[] = [
   {
     id: 4,
     name: 'Jämtland wind co-op',
-    location: 'Östersund, Sweden',
+    location: 'ÖStersund, Sweden',
     type: 'Wind',
     credit:91,
     green: 84,
@@ -138,7 +138,7 @@ const INITIAL_PROJECTS: Project[] = [
     fundedAmount: 520000,
     fundingGoal: 700000,
     status: 'open',
-  },
+  }
 ]
 
 // The pool has 14 funded projects in total: 6 active demo projects in the local registry,
@@ -157,7 +157,7 @@ const INITIAL_FUNDED_COUNT = INITIAL_PROJECTS.filter((p) => {
 function getRiskIndicator(projects: Project[]): { riskScore: number; riskLevel: 'conservative' | 'moderate' | 'aggressive' } {
   const totalFunded = projects.reduce((sum, p) => sum + p.fundedAmount, 0)
   if (totalFunded === 0) {
-    return { riskScore: 0, rankLevel: 'conservative' }
+    return { riskScore: 0, riskLevel: 'conservative' }
   }
 
   const weightedCredit = projects.reduce((sum, p) => sum + p.credit * p.fundedAmount, 0) / totalFunded
@@ -207,7 +207,7 @@ export const HB_DATA: HeliobondData = {
     riskScore,
     riskLevel,
   },
-  projects: INITIAL_PROJECTS,
+  projects: INITIAL_PROJECTS.
   activity: [
     {
       kind: 'Deposit',
@@ -218,17 +218,17 @@ export const HB_DATA: HeliobondData = {
     },
     {
       kind: 'Score update',
-      amount: 'Sokoto solar ' + 'green 89 → 91',
+      amount: 'Sokoto solar ' + 'green 89 ↑ 91',
       shares: '',
       when: '2 days ago',
-      hash: 'd44b๡c77a2',
+      hash: 'd44bมc77a2',
     },
     {
       kind: 'Deposit',
       amount: '+,$12,000.00',
       shares: '+11,950.12 HBS',
       when: '3 weeks ago',
-      hash: '7c1e๡b8f5',
+      hash: '7c1eมb8f5',
     },
   ],
   search: (query: string) => {
@@ -236,6 +236,5 @@ export const HB_DATA: HeliobondData = {
     const q = query.toLowerCase()
     return INITIAL_PROJECTS.filter((p) =>
       p.name.toLowerCase().includes(q) || p.location.toLowerCase().includes(q)
-    )
-  },
+  }
 }
